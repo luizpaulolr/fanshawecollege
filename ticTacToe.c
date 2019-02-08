@@ -17,13 +17,13 @@ char board[3][3];
 
 void printBoard(void)
 {
-	// Put the cursor on the initial position "Cleaning" all the previously displayed characters. 
+	// Put the cursos on initial position "Cleaning all the previously printed characters. 
 	printf("\033[2J");
 	printf("BOARD STATUS\n");
-	// Brute force matrix printing. It could be used for print the board instead of the follow for loop
-		/*printf("%c # %c # %c\n# # # # #\n%c # %c # %c\n# # # # #\n%c # %c # %c\n",	board[0][0], board[0][1], board[0][2],
-												board[1][0], board[1][1], board[1][2],
-												board[2][0], board[2][1], board[2][2]);*/
+	// Brute force matrix printing
+	/*printf("%c # %c # %c\n# # # # #\n%c # %c # %c\n# # # # #\n%c # %c # %c\n",	board[0][0], board[0][1], board[0][2],
+																					board[1][0], board[1][1], board[1][2],
+																					board[2][0], board[2][1], board[2][2]);*/
 	// The matrix is 3x3 and the Board is 5x5. So two counters is needed to keep track of the matrix
 	int lineCount = 0; 
 	int rowCount = 0;
@@ -60,7 +60,7 @@ void printBoard(void)
 
 int main(void)
 {
-	int row = 0, column = 0; // Invalid values to row and column
+	int row = 0, column = 0;
 	char player[NUMPLAYERS] = { 2, 1 };
 	char turn = 1;
 
@@ -78,7 +78,8 @@ int main(void)
 		printBoard();
 		// Print which turn it is
 		printf("\nTurn %i inputs.\n", turn);
-		do
+
+		while(TRUE) // Prompt the user for a valid answer
 		{
 			printf("Player %i enter the row location: ", player[turn % NUMPLAYERS]);
 			scanf_s("%i", &row);
@@ -86,7 +87,15 @@ int main(void)
 			printf("Player %i enter the column location: ", player[turn % NUMPLAYERS]);
 			scanf_s("%i", &column);
 
-		} while (row > 2 || row < 0 || column > 2 || column < 0 || board[row][column] != ' '); // Validation criteria to the inputs, if invalid prompt again.
+			if (row > 2 || row < 0 || column > 2 || column < 0 || board[row][column] != ' ')
+			{
+				printf("Invalid input! Try again!\n");
+			}
+			else
+			{
+				break; // exit the loop if a valid input was inserted
+			}
+		}
 
 		//Place the correct Symbol according which the turn 
 		if ((turn + 1) % 2 == 0)
@@ -103,7 +112,7 @@ int main(void)
 		{
 			/* There is 8 winning conditions that must be checked. It must check if a line is equal,
 			and it cannot include a line of ' ' (blankspaces)*/
-			if (	(board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
+			if ((board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
 				(board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||	//Condition 2
 				(board[0][0] != ' ' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||	//Condition 3
 				(board[0][1] != ' ' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||	//Condition 4
