@@ -17,13 +17,13 @@ char board[3][3];
 
 void printBoard(void)
 {
-	// Put the cursos on initial position "Cleaning all the previously printed characters. 
+	// Put the cursor on the initial position "Cleaning" all the previously displayed characters. 
 	printf("\033[2J");
 	printf("BOARD STATUS\n");
-	// Brute force matrix printing
-	/*printf("%c # %c # %c\n# # # # #\n%c # %c # %c\n# # # # #\n%c # %c # %c\n",	board[0][0], board[0][1], board[0][2],
-																					board[1][0], board[1][1], board[1][2],
-																					board[2][0], board[2][1], board[2][2]);*/
+	// Brute force matrix printing. It could be used for print the board instead of the follow for loop
+		/*printf("%c # %c # %c\n# # # # #\n%c # %c # %c\n# # # # #\n%c # %c # %c\n",	board[0][0], board[0][1], board[0][2],
+												board[1][0], board[1][1], board[1][2],
+												board[2][0], board[2][1], board[2][2]);*/
 	// The matrix is 3x3 and the Board is 5x5. So two counters is needed to keep track of the matrix
 	int lineCount = 0; 
 	int rowCount = 0;
@@ -103,7 +103,7 @@ int main(void)
 		{
 			/* There is 8 winning conditions that must be checked. It must check if a line is equal,
 			and it cannot include a line of ' ' (blankspaces)*/
-			if ((board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
+			if (	(board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
 				(board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||	//Condition 2
 				(board[0][0] != ' ' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||	//Condition 3
 				(board[0][1] != ' ' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||	//Condition 4
