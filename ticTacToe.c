@@ -112,7 +112,7 @@ int main(void)
 		{
 			/* There is 8 winning conditions that must be checked. It must check if a line is equal,
 			and it cannot include a line of ' ' (blankspaces)*/
-			if ((board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
+			if (	(board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
 				(board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||	//Condition 2
 				(board[0][0] != ' ' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||	//Condition 3
 				(board[0][1] != ' ' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||	//Condition 4
