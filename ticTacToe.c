@@ -11,7 +11,7 @@ The first column and row is 0 and it goest up to 2 (0, 1 or 2 for each input).*/
 #define NUMROWS 3
 #define NUMCOLUMNS 3
 #define BOARDROWS 5
-#define BOARDLINES 5
+#define BOARDCOLUMN 5
 
 char board[3][3];
 
@@ -25,29 +25,29 @@ void printBoard(void)
 											board[1][0], board[1][1], board[1][2],
 											board[2][0], board[2][1], board[2][2]);*/
 	// The matrix is 3x3 and the Board is 5x5. So two counters is needed to keep track of the matrix
-	int lineCount = 0; 
-	int rowCount = 0;
+	int rowCount = 0; 
+	int columnCount = 0;
 	for (int i = 0; i < BOARDROWS; i++)
 	{
 		
 		if (i % 2 == 0)
 		{
-			for (int j = 0; j < BOARDLINES; j++)
+			for (int j = 0; j < BOARDCOLUMN; j++)
 			{
 
 				if (j % 2 == 0)
 				{
 
-					printf("%c", board[lineCount][rowCount]);
-					rowCount++; // It increments when a line characters is printed
+					printf("%c", board[rowCount][columnCount]);
+					columnCount ++; // It increments when a character in a row is printed
 				}
 				else
 				{
 					printf("|");
 				}
 			}
-			rowCount = 0;
-			lineCount++; // It increments only when a line with characters is printed
+			columnCount = 0;
+			rowCount++; // It increments when all characters in a row are printed to start the next row
 			printf("\n");
 		}
 		else
@@ -112,7 +112,7 @@ int main(void)
 		{
 			/* There is 8 winning conditions that must be checked. It must check if a line is equal,
 			and it cannot include a line of ' ' (blankspaces)*/
-			if (	(board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
+			if ((board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||	//Condition 1
 				(board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||	//Condition 2
 				(board[0][0] != ' ' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||	//Condition 3
 				(board[0][1] != ' ' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||	//Condition 4
