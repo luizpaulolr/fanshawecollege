@@ -7,10 +7,10 @@
 	Copyright 	Fanshawe College, 2019
 
 	Description: 	This programs simulates the operation of three steppers motors receiving its
-					      position through a potentiometer and display the status in the standard
-					      Terminal through Serial asynchronous communication.
-                It also send status strings to another microcontroller connected in the Serial
-					      Port 2.		
+			position through a potentiometer and display the status in the standard
+			Terminal through Serial asynchronous communication.
+                	It also send status strings to another microcontroller connected in the Serial
+			Port 2.		
 
 ----------------------------------------------------------------------------------------------*/
 
