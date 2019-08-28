@@ -84,8 +84,8 @@
 #define MAJORMASK		0x0F
 
 // Lab 2 Constants
-#define MAJORPOSITIONS	4
-#define NUMOFINFOPOS	4
+#define MAJORPOSITIONS		4
+#define NUMOFINFOPOS		4
 
 #define HOME			0
 #define APROCH			1
@@ -184,9 +184,9 @@ void messageCreation (char messageType)
 		if (tac302.operationMode == MANUAL)
 		{
 			sprintf(messageBuffer,"%cMAXCHG,%i,%s,%c,%i", 	HEADER, CONTROLLER,
-															tac302.controllerAddress,
-															axisTitles[tac302.currentAxis], 
-															tac302.axisInfo[tac302.currentAxis].position);
+									tac302.controllerAddress,
+									axisTitles[tac302.currentAxis], 
+									tac302.axisInfo[tac302.currentAxis].position);
 		}
 		// Automatic Mode message
 		else
@@ -202,16 +202,16 @@ void messageCreation (char messageType)
 	else if (messageType == MAJORCHGMSG)
 	{
 		sprintf(messageBuffer,"%cMAJORCHG,%i,%s,%c,%i,%i,%i,%i,%c,%i,%i,%i,%i,%c,%i,%i,%i,%i,%c,%i,%i,%i,%i",
-																HEADER, CONTROLLER,
-																tac302.controllerAddress,
-																*positionTitles[HOME], defaultPosition[HOME][X],
-																defaultPosition[HOME][Y], defaultPosition[HOME][Z], defaultPosition[HOME][TOOL],
-																*positionTitles[APROCH], defaultPosition[APROCH][X], defaultPosition[APROCH][Y],
-																defaultPosition[APROCH][Z], defaultPosition[APROCH][TOOL],
-																*positionTitles[PROCS], defaultPosition[PROCS][X], defaultPosition[PROCS][Y],
-																defaultPosition[PROCS][Z], defaultPosition[PROCS][TOOL],
-																*positionTitles[DROP], defaultPosition[DROP][X], defaultPosition[DROP][Y],
-																defaultPosition[DROP][Z], defaultPosition[DROP][TOOL]);
+									HEADER, CONTROLLER,
+									tac302.controllerAddress,
+									*positionTitles[HOME], defaultPosition[HOME][X],
+									defaultPosition[HOME][Y], defaultPosition[HOME][Z], defaultPosition[HOME][TOOL],
+									*positionTitles[APROCH], defaultPosition[APROCH][X], defaultPosition[APROCH][Y],
+									defaultPosition[APROCH][Z], defaultPosition[APROCH][TOOL],
+									*positionTitles[PROCS], defaultPosition[PROCS][X], defaultPosition[PROCS][Y],
+									defaultPosition[PROCS][Z], defaultPosition[PROCS][TOOL],
+									*positionTitles[DROP], defaultPosition[DROP][X], defaultPosition[DROP][Y],
+									defaultPosition[DROP][Z], defaultPosition[DROP][TOOL]);
 
 
 	}
@@ -370,9 +370,9 @@ void initializeADC(void)
 {
 	TRISAbits.TRISA0= 1;			 	// Config pin as input
  	ANSELAbits.ANSA0 = 1; 				// Disable digital buffer, set to analog
-	ADCON0 = 0x01; 						// Channel AN0 selects (PIN A0), ADON = 1
-	ADCON1 = 0x00;						// Internal Reference for VDD and VSS
-	ADCON2 = 0xA9;						// Right justified, 12 TAD, Fosc/8 
+	ADCON0 = 0x01; 					// Channel AN0 selects (PIN A0), ADON = 1
+	ADCON1 = 0x00;					// Internal Reference for VDD and VSS
+	ADCON2 = 0xA9;					// Right justified, 12 TAD, Fosc/8 
 }	// eo initializeADC::
 
 	// --- Get ADC Value ---
@@ -387,9 +387,9 @@ Returns:	int - The ADC read result as a binary value
 int getAdc(void)
 {
 	int result = 0x00;
-	ADCON0bits.GO = 1;				// Start conversion 
+	ADCON0bits.GO = 1;			// Start conversion 
 	while (ADCON0bits.GO);			// Wait for completion 
-	result = ADRES;					// Read result (((unsigned int)ADRESH)<<8)|(ADRESL)   
+	result = ADRES;				// Read result (((unsigned int)ADRESH)<<8)|(ADRESL)   
 	return result;
 }	// eo getAdc::
 
